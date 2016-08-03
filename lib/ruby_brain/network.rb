@@ -147,10 +147,17 @@ module RubyBrain
           # for rms start
           total_error_of_output_nodes = forward_outputs.zip(t_output).reduce(0.0) do |a, output_pair|
             a + ((output_pair[0] - output_pair[1])**2 / 2.0)
+#	    ((output_pair[0] - output_pair[1])**2 / 2.0) + a
+#	    a + ((output_pair[0] - output_pair[1])**2 * 0.5)
+#	    a + ((output_pair[0] - 0.5 * output_pair[1])**2)
+#	    ((output_pair[0] - output_pair[1])**2 * 0.5) + a
+#	    ((output_pair[0] - 0.5 * output_pair[1])**2) + a
           end
           # end
           accumulated_errors += total_error_of_output_nodes / forward_outputs.size
           # accumulated_errors += forward_outputs.zip(t_output).reduce(0.0) { |a, output_pair| a + ((output_pair[0] - output_pair[1])**2 / 2.0) } / forward_outputs.size
+#	  # accumulated_errors += forward_outputs.zip(t_output).reduce(0.0) { |a, output_pair|
+#		a + ((output_pair[0] - output_pair[1])**2 * 0.5) } / forward_outputs.size
           # for rms end
           backward_inputs = forward_outputs.zip(t_output).map { |o, t| o - t }
           run_backpropagate(backward_inputs)
@@ -194,11 +201,16 @@ module RubyBrain
           # for rms start
           total_error_of_output_nodes = forward_outputs.zip(t_output).reduce(0.0) do |a, output_pair|
             a + ((output_pair[0] - output_pair[1])**2 / 2.0)
+#	    ((output_pair[0] - output_pair[1])**2 / 2.0) + a
+#	    a + ((output_pair[0] - output_pair[1])**2 * 0.5)
+#	    ((output_pair[0] - output_pair[1])**2 * 0.5) + a
           end
           # end
           error_of_this_training_data = total_error_of_output_nodes / forward_outputs.size
           accumulated_errors += error_of_this_training_data
           # accumulated_errors += forward_outputs.zip(t_output).reduce(0.0) { |a, output_pair| a + ((output_pair[0] - output_pair[1])**2 / 2.0) } / forward_outputs.size
+#	  # accumulated_errors += forward_outputs.zip(t_output).reduce(0.0) { |a, output_pair|
+#		a + ((output_pair[0] - output_pair[1])**2 * 0.5) } / forward_outputs.size
           # for rms end
           # if error_of_this_training_data > rms_error**2/2.0
           #   @learning_rate *= 10.0
@@ -232,13 +244,23 @@ module RubyBrain
           # for rms start
           total_error_of_output_nodes = forward_outputs.zip(t_output).reduce(0.0) do |a, output_pair|
             a + ((output_pair[0] - output_pair[1])**2 / 2.0)
+#	    ((output_pair[0] - output_pair[1])**2 / 2.0) + a
+#	    a + ((output_pair[0] - output_pair[1])**2 * 0.5)
+#	    ((output_pair[0] - output_pair[1])**2 * 0.5) + a
           end
           # end
           error_of_this_training_data = total_error_of_output_nodes / forward_outputs.size
           accumulated_errors += error_of_this_training_data
           # accumulated_errors += forward_outputs.zip(t_output).reduce(0.0) { |a, output_pair| a + ((output_pair[0] - output_pair[1])**2 / 2.0) } / forward_outputs.size
+#	  # accumulated_errors += forward_outputs.zip(t_output).reduce(0.0) { |a, output_pair|
+#		a + ((output_pair[0] - output_pair[1])**2 * 0.5) } / forward_outputs.size
           # for rms end
           if error_of_this_training_data > rms_error**2/2.0
+#	  if error_of_this_training_data > rms_error**2*0.5
+#	  if error_of_this_training_data > 0.5*rms_error**2
+#	  if rms_error**2*0.5 < error_of_this_training_data
+#	  if 0.5*rms_error**2 < error_of_this_training_data
+#	  if error_of_this_training_data*2.0 > rms_error**2
             @learning_rate *= 10.0
           end
           backward_inputs = forward_outputs.zip(t_output).map { |o, t| o - t }

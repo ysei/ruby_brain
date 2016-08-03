@@ -16,6 +16,7 @@ module RubyBrain
         f.each_line do |line|
           next if /\A\s+\z/ =~ line
           array_of_data_set << line.chomp.split(',')
+#	  array_of_data_set.push(line.chomp.split(','))
         end
       end
       array_of_data_set

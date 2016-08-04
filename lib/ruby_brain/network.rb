@@ -104,7 +104,7 @@ module RubyBrain
 #	      (layers = @layers[i .. i+1])[0].nodes[j].this_output * layers[1].nodes[k].this_backward_output)
 #	      (layers = @layers[i, 2])[0].nodes[j].this_output * layers[1].nodes[k].this_backward_output)
           end
-        end
+        end # .dup
       end
     end
 
@@ -122,7 +122,7 @@ module RubyBrain
 #	      (layers = @layers[i .. i+1])[0].nodes[j].this_output * layers[1].nodes[k].this_backward_output)
 #	      (layers = @layers[i, 2])[0].nodes[j].this_output * layers[1].nodes[k].this_backward_output)
           end
-        end
+        end # .dup
       end
     end
 

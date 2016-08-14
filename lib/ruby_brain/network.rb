@@ -96,6 +96,7 @@ module RubyBrain
 #	layers = @layers[i .. i+1]
 #	layers = @layers[i, 2]
         weights.each_with_index do |wl, j|
+#       weights.each_with_index__doujiheikou do |wl, j|
           wl.each_with_index do |w, k|
 #	    layers = @layers[i .. i+1]
 #	    layers = @layers[i, 2]
@@ -107,7 +108,7 @@ module RubyBrain
 #	      layers[0].nodes[j].this_output *
 #		layers[1].nodes[k].this_backward_output)  
           end
-        end # .dup
+        end
       end
     end
 
@@ -120,6 +121,7 @@ module RubyBrain
 #	layers = @layers[i .. i+1]
 #	layers = @layers[i, 2]
         weights.each_with_index do |wl, j|
+#       weights.each_with_index__doujiheikou do |wl, j|
           wl.each_with_index do |w, k|
 #	    layers = @layers[i .. i+1]
 #	    layers = @layers[i, 2]
@@ -131,7 +133,7 @@ module RubyBrain
 #	      layers[0].nodes[j].this_output *
 #		layers[1].nodes[k].this_backward_output)
           end
-        end # .dup
+        end
       end
     end
 

@@ -92,6 +92,7 @@ module RubyBrain
     def update_weights
 #     learning_rate = @learning_rate # .dup
 #     layers = []
+#     layers = @layers # .dup
       @weights_set.each_weights_with_index do |weights, i|
 #	layers = @layers[i .. i+1]
 #	layers = @layers[i, 2]
@@ -103,6 +104,7 @@ module RubyBrain
             wl[k] = w - (@learning_rate * @layers[i].nodes[j].this_output * @layers[i+1].nodes[k].this_backward_output)
 #	    wl[k] = w - (learning_rate *	# ? 
 #	      @layers[i].nodes[j].this_output * @layers[i+1].nodes[k].this_backward_output)
+#	      layers[i].nodes[j].this_output * layers[i+1].nodes[k].this_backward_output)
 #	      (layers = @layers[i .. i+1])[0].nodes[j].this_output *
 #	      (layers = @layers[i, 2])[0].nodes[j].this_output *
 #	      layers[0].nodes[j].this_output *
@@ -115,6 +117,7 @@ module RubyBrain
     def update_weights_of_layer(layer_index)
 #     learning_rate = @learning_rate # .dup
 #     layers = []
+#     layers = @layers # .dup
       layer_index = @weights_set.num_sets + layer_index if layer_index < 0
       @weights_set.each_weights_with_index do |weights, i|
         next if i != layer_index
@@ -128,6 +131,7 @@ module RubyBrain
             wl[k] = w - (@learning_rate * @layers[i].nodes[j].this_output * @layers[i+1].nodes[k].this_backward_output)
 #	    wl[k] = w - (learning_rate *	# ? 
 #	      @layers[i].nodes[j].this_output * @layers[i+1].nodes[k].this_backward_output)
+#	      layers[i].nodes[j].this_output * layers[i+1].nodes[k].this_backward_output)
 #	      (layers = @layers[i .. i+1])[0].nodes[j].this_output *
 #	      (layers = @layers[i, 2])[0].nodes[j].this_output *
 #	      layers[0].nodes[j].this_output *

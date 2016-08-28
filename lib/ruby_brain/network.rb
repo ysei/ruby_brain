@@ -93,9 +93,12 @@ module RubyBrain
 #     learning_rate = @learning_rate # .dup
 #     layers = []
 #     layers = @layers # .dup
+#     layers__dup = @layers # .dup
       @weights_set.each_weights_with_index do |weights, i|
 #	layers = @layers[i .. i+1]
 #	layers = @layers[i, 2]
+#	layers = layers__dup[i .. i+1]
+#	layers = layers__dup[i, 2]
         weights.each_with_index do |wl, j|
 #       weights.each_with_index__doujiheikou do |wl, j|
           wl.each_with_index do |w, k|
@@ -118,11 +121,14 @@ module RubyBrain
 #     learning_rate = @learning_rate # .dup
 #     layers = []
 #     layers = @layers # .dup
+#     layers__dup = @layers # .dup
       layer_index = @weights_set.num_sets + layer_index if layer_index < 0
       @weights_set.each_weights_with_index do |weights, i|
         next if i != layer_index
 #	layers = @layers[i .. i+1]
 #	layers = @layers[i, 2]
+#	layers = layers__dup[i .. i+1]
+#	layers = layers__dup[i, 2]
         weights.each_with_index do |wl, j|
 #       weights.each_with_index__doujiheikou do |wl, j|
           wl.each_with_index do |w, k|
